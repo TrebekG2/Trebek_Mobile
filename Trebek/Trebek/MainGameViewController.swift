@@ -107,7 +107,7 @@ extension MainGameViewController : UITextFieldDelegate {
         view.layoutIfNeeded()
          textField.resignFirstResponder()
         UIView.animateWithDuration(0.66) { () -> Void in
-            self.questionLabelVerticalContraint.constant = 200
+            self.questionLabelVerticalContraint.constant = 0
             self.buttonVerticalConstraints.constant = 20
             self.buttonVerticalConstraints2.constant = 20
             self.view.layoutIfNeeded()
