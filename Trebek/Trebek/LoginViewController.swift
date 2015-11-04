@@ -16,9 +16,11 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var nameTextField: UITextField!
     
     @IBOutlet weak var usernameTextField: UITextField!
+    
     @IBOutlet weak var passwordTextField: UITextField!
     
     @IBOutlet weak var emailTextField: UITextField!
+    //@email:
     
     //MARK: - @IBActions
     @IBAction func loginButtonPressed(sender: AnyObject) {

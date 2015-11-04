@@ -12,6 +12,10 @@
 		2BBE0F071BEA8FC500C27E7F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BBE0F061BEA8FC500C27E7F /* Assets.xcassets */; };
 		2BBE0F0A1BEA8FC500C27E7F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BBE0F081BEA8FC500C27E7F /* LaunchScreen.storyboard */; };
 		2BBE0F121BEA92D800C27E7F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBE0F111BEA92D800C27E7F /* LoginViewController.swift */; };
+		2BBE0F141BEA951E00C27E7F /* Gameplay.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BBE0F131BEA951E00C27E7F /* Gameplay.storyboard */; };
+		2BBE0F161BEA961600C27E7F /* MainGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBE0F151BEA961600C27E7F /* MainGameViewController.swift */; };
+		2BBE0F181BEA970100C27E7F /* DeckTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBE0F171BEA970100C27E7F /* DeckTableViewController.swift */; };
+		2BBE0F1A1BEA99B000C27E7F /* CategoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBE0F191BEA99B000C27E7F /* CategoriesTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +26,10 @@
 		2BBE0F091BEA8FC500C27E7F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2BBE0F0B1BEA8FC500C27E7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2BBE0F111BEA92D800C27E7F /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		2BBE0F131BEA951E00C27E7F /* Gameplay.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Gameplay.storyboard; sourceTree = "<group>"; };
+		2BBE0F151BEA961600C27E7F /* MainGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainGameViewController.swift; sourceTree = "<group>"; };
+		2BBE0F171BEA970100C27E7F /* DeckTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeckTableViewController.swift; sourceTree = "<group>"; };
+		2BBE0F191BEA99B000C27E7F /* CategoriesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,8 +63,12 @@
 			isa = PBXGroup;
 			children = (
 				2BBE0EFF1BEA8FC500C27E7F /* AppDelegate.swift */,
-				2BBE0F111BEA92D800C27E7F /* LoginViewController.swift */,
 				2BBE0F031BEA8FC500C27E7F /* Login.storyboard */,
+				2BBE0F111BEA92D800C27E7F /* LoginViewController.swift */,
+				2BBE0F131BEA951E00C27E7F /* Gameplay.storyboard */,
+				2BBE0F191BEA99B000C27E7F /* CategoriesTableViewController.swift */,
+				2BBE0F171BEA970100C27E7F /* DeckTableViewController.swift */,
+				2BBE0F151BEA961600C27E7F /* MainGameViewController.swift */,
 				2BBE0F061BEA8FC500C27E7F /* Assets.xcassets */,
 				2BBE0F081BEA8FC500C27E7F /* LaunchScreen.storyboard */,
 				2BBE0F0B1BEA8FC500C27E7F /* Info.plist */,
@@ -124,6 +136,7 @@
 			files = (
 				2BBE0F0A1BEA8FC500C27E7F /* LaunchScreen.storyboard in Resources */,
 				2BBE0F071BEA8FC500C27E7F /* Assets.xcassets in Resources */,
+				2BBE0F141BEA951E00C27E7F /* Gameplay.storyboard in Resources */,
 				2BBE0F051BEA8FC500C27E7F /* Login.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -135,8 +148,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BBE0F161BEA961600C27E7F /* MainGameViewController.swift in Sources */,
 				2BBE0F121BEA92D800C27E7F /* LoginViewController.swift in Sources */,
+				2BBE0F181BEA970100C27E7F /* DeckTableViewController.swift in Sources */,
 				2BBE0F001BEA8FC500C27E7F /* AppDelegate.swift in Sources */,
+				2BBE0F1A1BEA99B000C27E7F /* CategoriesTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +302,7 @@
 				2BBE0F101BEA8FC500C27E7F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
