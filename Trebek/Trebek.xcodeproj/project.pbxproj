@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B1F12141BECF11400B6041B /* RailsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1F12131BECF11400B6041B /* RailsRequest.swift */; };
+		2B1F12161BECF2E600B6041B /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1F12151BECF2E600B6041B /* WelcomeViewController.swift */; };
+		2B1F12181BECF93C00B6041B /* GameplayNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1F12171BECF93C00B6041B /* GameplayNavigationController.swift */; };
+		2B1F121C1BED0CD100B6041B /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1F121B1BED0CD100B6041B /* InitialViewController.swift */; };
+		2B969DB91BEBEDCF0026B7EA /* CategoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B969DB81BEBEDCF0026B7EA /* CategoriesTableViewController.swift */; };
 		2BBE0F001BEA8FC500C27E7F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBE0EFF1BEA8FC500C27E7F /* AppDelegate.swift */; };
 		2BBE0F051BEA8FC500C27E7F /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BBE0F031BEA8FC500C27E7F /* Login.storyboard */; };
 		2BBE0F071BEA8FC500C27E7F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BBE0F061BEA8FC500C27E7F /* Assets.xcassets */; };
@@ -15,10 +20,14 @@
 		2BBE0F141BEA951E00C27E7F /* Gameplay.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BBE0F131BEA951E00C27E7F /* Gameplay.storyboard */; };
 		2BBE0F161BEA961600C27E7F /* MainGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBE0F151BEA961600C27E7F /* MainGameViewController.swift */; };
 		2BBE0F181BEA970100C27E7F /* DeckTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBE0F171BEA970100C27E7F /* DeckTableViewController.swift */; };
-		2BBE0F1A1BEA99B000C27E7F /* CategoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBE0F191BEA99B000C27E7F /* CategoriesTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2B1F12131BECF11400B6041B /* RailsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RailsRequest.swift; sourceTree = "<group>"; };
+		2B1F12151BECF2E600B6041B /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		2B1F12171BECF93C00B6041B /* GameplayNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameplayNavigationController.swift; sourceTree = "<group>"; };
+		2B1F121B1BED0CD100B6041B /* InitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
+		2B969DB81BEBEDCF0026B7EA /* CategoriesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewController.swift; sourceTree = "<group>"; };
 		2BBE0EFC1BEA8FC500C27E7F /* Trebek.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trebek.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BBE0EFF1BEA8FC500C27E7F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2BBE0F041BEA8FC500C27E7F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
@@ -29,7 +38,6 @@
 		2BBE0F131BEA951E00C27E7F /* Gameplay.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Gameplay.storyboard; sourceTree = "<group>"; };
 		2BBE0F151BEA961600C27E7F /* MainGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainGameViewController.swift; sourceTree = "<group>"; };
 		2BBE0F171BEA970100C27E7F /* DeckTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeckTableViewController.swift; sourceTree = "<group>"; };
-		2BBE0F191BEA99B000C27E7F /* CategoriesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +51,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B969D971BEBA1F70026B7EA /* GameplayViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				2B1F12171BECF93C00B6041B /* GameplayNavigationController.swift */,
+				2B1F12151BECF2E600B6041B /* WelcomeViewController.swift */,
+				2BBE0F171BEA970100C27E7F /* DeckTableViewController.swift */,
+				2B969DB81BEBEDCF0026B7EA /* CategoriesTableViewController.swift */,
+				2BBE0F151BEA961600C27E7F /* MainGameViewController.swift */,
+			);
+			name = GameplayViewControllers;
+			sourceTree = "<group>";
+		};
 		2BBE0EF31BEA8FC500C27E7F = {
 			isa = PBXGroup;
 			children = (
@@ -64,11 +84,11 @@
 			children = (
 				2BBE0EFF1BEA8FC500C27E7F /* AppDelegate.swift */,
 				2BBE0F031BEA8FC500C27E7F /* Login.storyboard */,
+				2B1F121B1BED0CD100B6041B /* InitialViewController.swift */,
 				2BBE0F111BEA92D800C27E7F /* LoginViewController.swift */,
+				2B1F12131BECF11400B6041B /* RailsRequest.swift */,
 				2BBE0F131BEA951E00C27E7F /* Gameplay.storyboard */,
-				2BBE0F191BEA99B000C27E7F /* CategoriesTableViewController.swift */,
-				2BBE0F171BEA970100C27E7F /* DeckTableViewController.swift */,
-				2BBE0F151BEA961600C27E7F /* MainGameViewController.swift */,
+				2B969D971BEBA1F70026B7EA /* GameplayViewControllers */,
 				2BBE0F061BEA8FC500C27E7F /* Assets.xcassets */,
 				2BBE0F081BEA8FC500C27E7F /* LaunchScreen.storyboard */,
 				2BBE0F0B1BEA8FC500C27E7F /* Info.plist */,
@@ -151,8 +171,12 @@
 				2BBE0F161BEA961600C27E7F /* MainGameViewController.swift in Sources */,
 				2BBE0F121BEA92D800C27E7F /* LoginViewController.swift in Sources */,
 				2BBE0F181BEA970100C27E7F /* DeckTableViewController.swift in Sources */,
+				2B1F121C1BED0CD100B6041B /* InitialViewController.swift in Sources */,
 				2BBE0F001BEA8FC500C27E7F /* AppDelegate.swift in Sources */,
-				2BBE0F1A1BEA99B000C27E7F /* CategoriesTableViewController.swift in Sources */,
+				2B969DB91BEBEDCF0026B7EA /* CategoriesTableViewController.swift in Sources */,
+				2B1F12181BECF93C00B6041B /* GameplayNavigationController.swift in Sources */,
+				2B1F12141BECF11400B6041B /* RailsRequest.swift in Sources */,
+				2B1F12161BECF2E600B6041B /* WelcomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

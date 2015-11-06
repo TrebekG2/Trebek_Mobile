@@ -11,9 +11,27 @@ import UIKit
 private let WOO_HOO = "wooHoo"
 private let SCORE = "Score: "
 
-class MainGameViewController: UIViewController {
-    //MARK: - Properties
+private let QUESTION = "question"
+private let question1 = "To be or not to be..."
+private let question2 = "How many states are in the United States?"
+private let question3 = "Who is the best group?"
+
+private let ANSWER = "answer"
+private let answer1 = "that is the question"
+private let answer2 = "50"
+private let answer3 = "group2"
+
+private var currentQuestion = 1
+private var questionCount = 0
+
+
+class MainGameViewController: UIViewController, UIGestureRecognizerDelegate {
+
     var score = 0
+    var originalPoint = CGPoint()
+    
+    var questions:[String] = [question1, question2, question3]
+    var answers:[String] = [answer1, answer2, answer3]
     
     //MARK: - @IBOutlet
     @IBOutlet weak var scoreLabel: UILabel!
@@ -21,19 +39,40 @@ class MainGameViewController: UIViewController {
     @IBOutlet weak var questionLabel: UILabel!
     
     @IBOutlet weak var submitButton: UIButton!
-    
     @IBOutlet weak var skipButton: UIButton!
     
     @IBOutlet weak var questionLabelVerticalContraint: NSLayoutConstraint!
-    
+
     @IBOutlet weak var buttonVerticalConstraints: NSLayoutConstraint!
     
     @IBOutlet weak var buttonVerticalConstraints2: NSLayoutConstraint!
     
+    @IBOutlet weak var visualEffectView: UIVisualEffectView!
+    
     //MARK: - @IBActions
     @IBAction func submitButtonPressed(sender: AnyObject) {
-        score += 10
-        scoreLabel.text = SCORE + String(score)
+        
+        UIView.animateWithDuration(0.25) { () -> Void in
+            self.scoreLabel.alpha = 0
+            self.questionLabel.alpha = 0
+            self.score += 10
+            
+            self.scoreLabel.text = SCORE + String(self.score)
+            self.questionLabel.text = self.questions[currentQuestion]
+            self.answerTextField.placeholder = self.answers[currentQuestion]
+            currentQuestion++
+            
+        }
+        
+        UIView.animateWithDuration(0.66) { () -> Void in
+            self.scoreLabel.alpha = 1
+            
+        }
+        
+        UIView.animateWithDuration(1) { () -> Void in
+            self.questionLabel.alpha = 1
+            
+        }
         
     }
     
@@ -43,28 +82,54 @@ class MainGameViewController: UIViewController {
             scoreLabel.text = SCORE + String(score)
             
         }
-
+    
+    }
+    
+    @IBAction func handlePan(recognizer: UIPanGestureRecognizer) {
+        let translation = recognizer.translationInView(view)
+        if recognizer.state == .Began {
+            UIView.animateWithDuration(0.66, animations: { () -> Void in
+                self.view.layer.borderColor = UIColor.whiteColor().CGColor
+                self.view.backgroundColor = UIColor.grayColor()
+                self.visualEffectView.alpha = 1
+                
+            })
+            
+        }
+        
+        if let view = recognizer.view {
+            view.center = CGPoint(x: view.center.x + translation.x, y: view.center.y)
+            recognizer.setTranslation(CGPointZero, inView: view)
+            
+        }
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        questionLabel.layer.masksToBounds = true 
+        questionLabel.layer.cornerRadius = 20
+        questionLabel.layer.borderColor = UIColor.grayColor().CGColor
+        questionLabel.layer.borderWidth = 1
+        visualEffectView.alpha = 0
+
+        questionCount = questions.count
+        
         setDelegate(answerTextField)
-
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+        
+        
+        //TO-FIX: 
+        
+        questionLabel.text = questions[0]
+        answerTextField.placeholder = answers[0]
 
     }
     
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
 
-
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
     }
 
 }
@@ -115,10 +180,10 @@ extension MainGameViewController : UITextFieldDelegate {
         }
 
     }
+    
     func setDelegate(textField: UITextField) {
         textField.delegate = self
         
     }
-    
     
 }

@@ -8,8 +8,8 @@
 
 import UIKit
 
-private let CATEGORIES = ["Sports","Entertainment", "History", "Vidya Games"]
-private let REUSE_IDENTIFIER = "CategoriesCell"
+private let CATEGORIES = ["Sports", "Entertainment", "History", "More Sports"]
+private let REUSE_IDENTIFIER = "CategoryCell"
 
 class CategoriesTableViewController: UITableViewController {
 
