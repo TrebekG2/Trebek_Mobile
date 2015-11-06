@@ -24,7 +24,6 @@ private let answer3 = "group2"
 private var currentQuestion = 1
 private var questionCount = 0
 
-
 class MainGameViewController: UIViewController, UIGestureRecognizerDelegate {
 
     var score = 0
@@ -51,26 +50,38 @@ class MainGameViewController: UIViewController, UIGestureRecognizerDelegate {
     
     //MARK: - @IBActions
     @IBAction func submitButtonPressed(sender: AnyObject) {
-        
-        UIView.animateWithDuration(0.25) { () -> Void in
-            self.scoreLabel.alpha = 0
-            self.questionLabel.alpha = 0
-            self.score += 10
-            
-            self.scoreLabel.text = SCORE + String(self.score)
-            self.questionLabel.text = self.questions[currentQuestion]
-            self.answerTextField.placeholder = self.answers[currentQuestion]
-            currentQuestion++
-            
-        }
-        
-        UIView.animateWithDuration(0.66) { () -> Void in
-            self.scoreLabel.alpha = 1
-            
-        }
-        
-        UIView.animateWithDuration(1) { () -> Void in
-            self.questionLabel.alpha = 1
+        if let answer = answerTextField.text {
+            if let correctAnswer = answerTextField.placeholder {
+                if answer == correctAnswer {
+                    UIView.animateWithDuration(0.25) { () -> Void in
+                        self.scoreLabel.alpha = 0
+                        self.questionLabel.alpha = 0
+                        self.score += 10
+                        
+                        self.scoreLabel.text = SCORE + String(self.score)
+                        self.questionLabel.text = self.questions[currentQuestion]
+                        self.answerTextField.placeholder = self.answers[currentQuestion]
+                        currentQuestion++
+                        
+                    }
+                    
+                    UIView.animateWithDuration(0.66) { () -> Void in
+                        self.scoreLabel.alpha = 1
+                        
+                    }
+                    
+                    UIView.animateWithDuration(1) { () -> Void in
+                        self.questionLabel.alpha = 1
+                        
+                    }
+                    
+                } else if answer != correctAnswer {
+                    print("incorrect")
+                    score -= 1
+                    
+                }
+                
+            }
             
         }
         
@@ -118,7 +129,6 @@ class MainGameViewController: UIViewController, UIGestureRecognizerDelegate {
         
         setDelegate(answerTextField)
         
-        
         //TO-FIX: 
         
         questionLabel.text = questions[0]
@@ -131,8 +141,14 @@ class MainGameViewController: UIViewController, UIGestureRecognizerDelegate {
         super.didReceiveMemoryWarning()
 
     }
+    
+    override func viewDidDisappear(animated: Bool) {
+        questionLabel.text = questions[0]
+        answerTextField.placeholder = answers[0]
+    }
 
 }
+
 
 extension MainGameViewController : UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {

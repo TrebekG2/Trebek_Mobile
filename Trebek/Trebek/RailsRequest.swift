@@ -112,4 +112,6 @@ struct RequestInfo {
     var endPoint: String!
     var method: MethodType = .GET
     var parameters: [String:AnyObject] = [:]
+    var query: [String:AnyObject] = [:]
+    
 }
