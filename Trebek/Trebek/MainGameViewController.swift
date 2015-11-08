@@ -19,7 +19,7 @@ private let question3 = "Who is the best group?"
 private let ANSWER = "answer"
 private let answer1 = "that is the question"
 private let answer2 = "50"
-private let answer3 = "group2"
+private let answer3 = "everyone"
 
 private var currentQuestion = 1
 private var questionCount = 0
@@ -53,6 +53,7 @@ class MainGameViewController: UIViewController, UIGestureRecognizerDelegate {
         if let answer = answerTextField.text {
             if let correctAnswer = answerTextField.placeholder {
                 if answer == correctAnswer {
+                    
                     UIView.animateWithDuration(0.25) { () -> Void in
                         self.scoreLabel.alpha = 0
                         self.questionLabel.alpha = 0

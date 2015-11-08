@@ -15,13 +15,10 @@ private let WELCOMEVC = "WelcomeVC"
 private let STORYBORD_NAME = "Gameplay"
 private let NAVIGATION_CONTROLLER = "GameplayNavigationController"
 
-private var NAME = "Joe"
-private var USERNAME = "admin"
-private var PASSWORD = "password"
-private var EMAIL = "email"
-
 class LoginViewController: UIViewController {
+    
     //MARK: - Properties
+    let usernameRequest = RailsRequest.session()
     
     //MARK: - @IBOutlets
     @IBOutlet weak var nameTextField: UITextField!
@@ -39,20 +36,15 @@ class LoginViewController: UIViewController {
         guard let password = passwordTextField.text where password != EMPTY_STRING else {
             return alertError(LOGIN_FAILED, reason: "Password is empty.")}
         
+        RailsRequest.session().loginWithUsername(username, andPassword: password)
         
-        if username == USERNAME && password == PASSWORD {
-            if let vc = UIStoryboard(name: STORYBORD_NAME, bundle: nil).instantiateViewControllerWithIdentifier(NAVIGATION_CONTROLLER) as? GameplayNavigationController {
-                vc.user = username
-                if let firstVC = vc.viewControllers.first as? WelcomeViewController {
-                    firstVC.user = username
-                }
-                
-                presentViewController(vc, animated: true, completion: nil)
-                
-            } else if username != USERNAME || password != PASSWORD {
-                return alertError(LOGIN_FAILED, reason: "Incorrect username or password.")
-                
+        if let vc = UIStoryboard(name: STORYBORD_NAME, bundle: nil).instantiateViewControllerWithIdentifier(NAVIGATION_CONTROLLER) as? GameplayNavigationController {
+            vc.user = username
+            if let firstVC = vc.viewControllers.first as? WelcomeViewController {
+                firstVC.user = username
             }
+            
+            presentViewController(vc, animated: true, completion: nil)
             
         }
         
@@ -68,10 +60,7 @@ class LoginViewController: UIViewController {
         guard let email = emailTextField.text where email != EMPTY_STRING else {
             return alertError(REGISTER_FAILED, reason: "Email is empty.")}
         
-        NAME = name
-        USERNAME = username
-        PASSWORD = password
-        EMAIL = email
+        RailsRequest.session().registerWithUsername(name, username: username, password: password, email: email)
         
         if let vc = UIStoryboard(name: STORYBORD_NAME, bundle: nil).instantiateInitialViewController() as? GameplayNavigationController {
             vc.user = username
@@ -90,7 +79,6 @@ class LoginViewController: UIViewController {
 
     }
     override func viewDidAppear(animated: Bool) {
-        
         nameTextField?.delegate = self
         usernameTextField?.delegate = self
         passwordTextField?.delegate = self
