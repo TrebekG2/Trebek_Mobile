@@ -12,8 +12,8 @@ private let EMPTY_STRING = ""
 private let REGISTER_FAILED = "Register Failed"
 private let LOGIN_FAILED = "Login Failed"
 private let WELCOMEVC = "WelcomeVC"
-private let STORYBORD_NAME = "Gameplay"
-private let NAVIGATION_CONTROLLER = "GameplayNavigationController"
+private let STORYBOARD_NAME = "Gameplay"
+
 
 class LoginViewController: UIViewController {
     
@@ -38,15 +38,6 @@ class LoginViewController: UIViewController {
         
         RailsRequest.session().loginWithUsername(username, andPassword: password)
         
-        if let vc = UIStoryboard(name: STORYBORD_NAME, bundle: nil).instantiateViewControllerWithIdentifier(NAVIGATION_CONTROLLER) as? GameplayNavigationController {
-            vc.user = username
-            if let firstVC = vc.viewControllers.first as? WelcomeViewController {
-                firstVC.user = username
-            }
-            
-            presentViewController(vc, animated: true, completion: nil)
-            
-        }
         
     }
     
@@ -62,15 +53,15 @@ class LoginViewController: UIViewController {
         
         RailsRequest.session().registerWithUsername(name, username: username, password: password, email: email)
         
-        if let vc = UIStoryboard(name: STORYBORD_NAME, bundle: nil).instantiateInitialViewController() as? GameplayNavigationController {
-            vc.user = username
-            if let firstVC = vc.viewControllers.first as? WelcomeViewController {
-                firstVC.user = username
-            }
-            
-            presentViewController(vc, animated: true, completion: nil)
-            
-        }
+//        if let vc = UIStoryboard(name: STORYBOARD_NAME, bundle: nil).instantiateInitialViewController() as? GameplayNavigationController {
+//            vc.user = username
+//            if let firstVC = vc.viewControllers.first as? WelcomeViewController {
+//                firstVC.user = username
+//            }
+//            
+//            presentViewController(vc, animated: true, completion: nil)
+//            
+//        }
 
     }
 

@@ -25,10 +25,18 @@ private let PASSWORD = "password"
 private let EMAIL = "email"
 private let ERRORS = "errors"
 
+private let OK = "ok"
+private let ERROR = "error"
+
+private let NAVIGATION_CONTROLLER = "GameplayNavigationController"
+private let STORYBORD_NAME = "Gameplay"
+
 
 private let ACCESS_TOKEN = "access_token" // need to get
 
 class RailsRequest: NSObject {
+    
+    var vc = UIViewController()
     
     class func session() -> RailsRequest {return _railsRequest }
     
@@ -79,12 +87,13 @@ class RailsRequest: NSObject {
                 if let key = user[ACCESS_TOKEN] as? String {
                     self.token = key
                     print(self.token)
-                    
+
                 }
                 
             }
+        
             
-            if let error = returnedInfo?[ERRORS] as? [String] {
+            if let error = returnedInfo?[ERRORS] as? String {
                 print(error)
                 
             }
@@ -152,7 +161,7 @@ class RailsRequest: NSObject {
         
         if let token = token {
             request.setValue(token, forHTTPHeaderField: ACCESS_TOKEN)
-            print(token)
+            print("infoRequested")
             
         }
         
