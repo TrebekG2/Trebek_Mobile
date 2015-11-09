@@ -55,7 +55,14 @@ class LoginViewController: UIViewController {
                     print("username \(username)")
                     if let firstVC = vc.viewControllers.first as? WelcomeViewController {
                         firstVC.user = username
-                        RailsRequest.session().getDecks()
+                        RailsRequest.session().getDecksAndIDs({ (success) -> () in
+                            if let titles = RailsRequest.session().titles {
+                                firstVC.decks = titles
+                                
+                            }
+                            
+                        })
+
                     }
                     
                     self.presentViewController(vc, animated: true, completion: nil)
@@ -82,8 +89,17 @@ class LoginViewController: UIViewController {
             if let vc = UIStoryboard(name: STORYBOARD_NAME, bundle: nil).instantiateViewControllerWithIdentifier(NAVIGATION_CONTROLLER) as? GameplayNavigationController {
                 if let firstVC = vc.viewControllers.first as? WelcomeViewController {
                     firstVC.user = username
-                    RailsRequest.session().getDecks()
+                    RailsRequest.session().getDecksAndIDs({ (success) -> () in
+                        if let titles = RailsRequest.session().titles {
+                            firstVC.decks = titles
+                            
+                        }
+                        
+                    })
+                
                 }
+                
+                self.presentViewController(vc, animated: true, completion: nil)
                 
             }
             

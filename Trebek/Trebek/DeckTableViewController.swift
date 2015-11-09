@@ -15,6 +15,7 @@ private let DECK_LISTS = ["Cray", "ToughDeck", "Lobster", "Math"]
 class DeckTableViewController: UITableViewController {
     
     var decks = []
+    var ids = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,14 +40,16 @@ class DeckTableViewController: UITableViewController {
 //    }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
-        return DECK_LISTS.count
+        
+        return decks.count
     }
-
-
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(IDENTIFIER, forIndexPath: indexPath)
-        cell.textLabel?.text = DECK_LISTS[indexPath.row]
+        if let deckTitle = decks[indexPath.row]["title"] as? String {
+            cell.textLabel!.text = deckTitle
+            
+        }
 
         return cell
     }

@@ -35,6 +35,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <action selector="chooseDeckPressed:" destination="huQ-Me-fmE" eventType="touchUpInside" id="1Z7-NA-0Vq"/>
                                     <segue destination="BwW-Fu-Erg" kind="show" id="6eq-Hc-1sB"/>
                                 </connections>
                             </button>

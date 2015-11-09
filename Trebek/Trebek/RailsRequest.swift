@@ -74,16 +74,7 @@ class RailsRequest: NSObject {
         
     }
     
-    var titles: [[String:AnyObject]]? {
-        get { return _default.objectForKey(TITLE) as? [[String:AnyObject]] }
-        set { _default.setObject(newValue, forKey: TITLE) }
-    }
-    
-    var id: [[String:AnyObject]]? {
-        get { return _default.objectForKey(ID) as? [[String:AnyObject]] }
-        set { _default.setObject(newValue, forKey: ID)}
-    }
-    
+    var titles: [[String:AnyObject]]?
     
     /// The base url used when making an API call
     private let base = _API_URL
@@ -126,7 +117,7 @@ class RailsRequest: NSObject {
         
     }
     
-    func getDecks() {
+    func getDecksAndIDs(success: Bool ->() ) {
         var info = RequestInfo()
         info.endPoint = "/deck"
         info.method = .GET
@@ -134,15 +125,14 @@ class RailsRequest: NSObject {
         
         requestWithInfo(info) { (returnedInfo) -> () in
             print("we should be getting decks")
-            if let titles = returnedInfo?[TITLE] as? [[String:AnyObject]] {
+
+            if let titles = returnedInfo as? [[String:AnyObject]] {
                 self.titles = titles
                 print("title: \(titles)")
+                success(true)
                 
-            }
-            
-            if let id = returnedInfo?[ID] as? [[String:AnyObject]] {
-                self.id = id
-                print("id: \(id)")
+            } else {
+                success(false)
             }
 
         }
