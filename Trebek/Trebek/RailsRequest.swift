@@ -36,7 +36,7 @@ private let ACCESS_TOKEN = "access_token" // need to get
 
 class RailsRequest: NSObject {
     
-    var vc = UIViewController()
+    let vc = UIViewController()
     
     class func session() -> RailsRequest {return _railsRequest }
     
@@ -83,15 +83,15 @@ class RailsRequest: NSObject {
         
         requestWithInfo(info) { (returnedInfo) -> () in
             
-            if let user = returnedInfo?[USER] as? [String:AnyObject] {
+            if let user = returnedInfo as? [String:AnyObject] {
                 if let key = user[ACCESS_TOKEN] as? String {
+                    print("key set")
                     self.token = key
-                    print(self.token)
+                    self.token = key //getting a bug with setting the key once. setting it again resolves this issue. not sure why...
 
                 }
                 
             }
-        
             
             if let error = returnedInfo?[ERRORS] as? String {
                 print(error)
@@ -161,8 +161,8 @@ class RailsRequest: NSObject {
         
         if let token = token {
             request.setValue(token, forHTTPHeaderField: ACCESS_TOKEN)
-            print("infoRequested")
-            
+            print("we already have a token")
+
         }
         
         if let requestData = try? NSJSONSerialization.dataWithJSONObject(info.parameters, options: .PrettyPrinted) {
@@ -182,11 +182,12 @@ class RailsRequest: NSObject {
             if let data = data {
                 if let returnedInfo = try? NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers) {
                     completion(returnedInfo: returnedInfo)
-                    print(returnedInfo)
+                    print("returned info:\(returnedInfo)")
                     
                 }
                 
             } else {
+                print("nothing returned")
                 
             }
             

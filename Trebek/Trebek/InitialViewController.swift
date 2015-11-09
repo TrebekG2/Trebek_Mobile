@@ -18,7 +18,7 @@ class InitialViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         trebekTitleLabel.alpha = 0
         trebekImageView.alpha = 0
         loginButton.alpha = 0
@@ -29,6 +29,7 @@ class InitialViewController: UIViewController {
         UIView.animateWithDuration(0.33) { () -> Void in
             self.trebekImageView.alpha = 1
             self.trebekImageView.center = CGPoint(x: self.trebekImageView.center.x, y: self.trebekImageView.center.y - 3)
+
             
         }
         

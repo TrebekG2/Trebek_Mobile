@@ -11,8 +11,18 @@ import UIKit
 private let EMPTY_STRING = ""
 private let REGISTER_FAILED = "Register Failed"
 private let LOGIN_FAILED = "Login Failed"
+private let LOGIN_IS_EMPTY = "Login is Empty."
+private let PASSWORD_IS_EMPTY = "Password is Empty"
+
 private let WELCOMEVC = "WelcomeVC"
 private let STORYBOARD_NAME = "Gameplay"
+private let NAVIGATION_CONTROLLER = "GameplayNavigationController"
+
+private let ALERT = "Alert"
+private let ALERT_MSG = "Incorret username or password"
+private let OK = "Ok"
+private let UNKNOWN_ERROR = "Unknown error"
+private let INVALID_USERNAME = "Invalid username and/or password"
 
 
 class LoginViewController: UIViewController {
@@ -32,12 +42,23 @@ class LoginViewController: UIViewController {
     @IBAction func loginButtonPressed(sender: AnyObject) {
         
         guard let username = usernameTextField.text where username != EMPTY_STRING else {
-            return alertError(LOGIN_FAILED, reason: "Login is Empty.")}
+            return alertError(LOGIN_FAILED, reason: LOGIN_IS_EMPTY)}
         guard let password = passwordTextField.text where password != EMPTY_STRING else {
-            return alertError(LOGIN_FAILED, reason: "Password is empty.")}
+            return alertError(LOGIN_FAILED, reason: PASSWORD_IS_EMPTY)}
         
         RailsRequest.session().loginWithUsername(username, andPassword: password)
-        
+        if let token = RailsRequest.session().token {
+            print("requested token: \(token)")
+            if token == EMPTY_STRING {
+                alertError(LOGIN_FAILED, reason: INVALID_USERNAME)
+            } else if let vc = UIStoryboard(name: STORYBOARD_NAME, bundle: nil).instantiateViewControllerWithIdentifier(NAVIGATION_CONTROLLER) as? GameplayNavigationController {
+                print("username \(username)")
+                vc.user = username
+                self.presentViewController(vc, animated: true, completion: nil)
+                
+            }
+            
+        }
         
     }
     
