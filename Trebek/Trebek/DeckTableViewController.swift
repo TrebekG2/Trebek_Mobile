@@ -13,6 +13,8 @@ private let IDENTIFIER = "DeckCell"
 private let DECK_LISTS = ["Cray", "ToughDeck", "Lobster", "Math"]
 
 class DeckTableViewController: UITableViewController {
+    
+    var decks = []
 
     override func viewDidLoad() {
         super.viewDidLoad()

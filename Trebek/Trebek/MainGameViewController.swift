@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import QuartzCore
 
 private let WOO_HOO = "wooHoo"
 private let SCORE = "Score: "
@@ -21,10 +22,15 @@ private let answer1 = "that is the question"
 private let answer2 = "50"
 private let answer3 = "everyone"
 
+private let GAME_OVER = "Game Over"
+private let TRANSFORM = "transform"
+
 private var currentQuestion = 1
 private var questionCount = 0
 
 class MainGameViewController: UIViewController, UIGestureRecognizerDelegate {
+    
+    let anim = CAKeyframeAnimation(keyPath: TRANSFORM)
 
     var score = 0
     var originalPoint = CGPoint()
@@ -60,24 +66,62 @@ class MainGameViewController: UIViewController, UIGestureRecognizerDelegate {
                         self.score += 10
                         
                         self.scoreLabel.text = SCORE + String(self.score)
-                        self.questionLabel.text = self.questions[currentQuestion]
+                        
+                        if currentQuestion == 4 {
+                            self.questionLabel.text = GAME_OVER
+                            
+                        } else if currentQuestion < 4 {
+                            self.questionLabel.text = self.questions[currentQuestion]
+                            self.answerTextField.text = ""
+                            
+                        }
+                        
                         self.answerTextField.placeholder = self.answers[currentQuestion]
-                        currentQuestion++
                         
                     }
                     
                     UIView.animateWithDuration(0.66) { () -> Void in
                         self.scoreLabel.alpha = 1
+                        self.view.backgroundColor = UIColor.greenColor()
+                     
+                        self.view.alpha = 1
                         
                     }
                     
                     UIView.animateWithDuration(1) { () -> Void in
+                        self.view.backgroundColor = UIColor.whiteColor()
                         self.questionLabel.alpha = 1
                         
                     }
                     
                 } else if answer != correctAnswer {
-                    print("incorrect")
+                    
+                    anim.values = [NSValue(CATransform3D:CATransform3DMakeTranslation(-3, 0, 0)), NSValue( CATransform3D: CATransform3DMakeTranslation(3, 0, 0))]
+                    
+                    anim.autoreverses = true
+                    anim.repeatCount = 4
+                    
+                    anim.duration = 0.06
+                    
+                    scoreLabel.layer.addAnimation(anim, forKey: nil)
+                    answerTextField.layer.addAnimation(anim, forKey: nil)
+                    questionLabel.layer.addAnimation(anim, forKey: nil)
+                    submitButton.layer.addAnimation(anim, forKey: nil)
+                    skipButton.layer.addAnimation(anim, forKey: nil)
+                    
+                    UIView.animateWithDuration(0.66, animations: { () -> Void in
+                        self.view.backgroundColor = UIColor.redColor()
+                        
+                        
+                        
+                    })
+                    
+                    UIView.animateWithDuration(1, animations: { () -> Void in
+                        self.view.backgroundColor = UIColor.whiteColor()
+                        self.questionLabel.center = CGPoint(x: self.questionLabel.center.x, y: self.questionLabel.center.y)
+                        
+                    })
+                    
                     score -= 1
                     
                 }

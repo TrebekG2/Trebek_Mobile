@@ -12,6 +12,8 @@ private let CATEGORIES = ["Sports", "Entertainment", "History", "More Sports"]
 private let REUSE_IDENTIFIER = "CategoryCell"
 
 class CategoriesTableViewController: UITableViewController {
+    
+    var categories = []
 
     override func viewDidLoad() {
         super.viewDidLoad()

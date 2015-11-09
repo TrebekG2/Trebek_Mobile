@@ -11,6 +11,8 @@ import UIKit
 class WelcomeViewController: UIViewController {
     
     var user = String()
+    var decks = []
+    var categories = []
     
     @IBOutlet weak var welcomeLabel: UILabel!
     override func viewDidLoad() {

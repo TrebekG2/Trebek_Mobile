@@ -11,6 +11,8 @@ import UIKit
 class GameplayNavigationController: UINavigationController {
     
     var user = String()
+    var decks = []
+    var categories = []
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -53,7 +53,10 @@ class LoginViewController: UIViewController {
                 alertError(LOGIN_FAILED, reason: INVALID_USERNAME)
             } else if let vc = UIStoryboard(name: STORYBOARD_NAME, bundle: nil).instantiateViewControllerWithIdentifier(NAVIGATION_CONTROLLER) as? GameplayNavigationController {
                 print("username \(username)")
-                vc.user = username
+                if let firstVC = vc.viewControllers.first as? WelcomeViewController {
+                    firstVC.user = username
+                    RailsRequest.session().getDecks()
+                }
                 self.presentViewController(vc, animated: true, completion: nil)
                 
             }
@@ -74,15 +77,6 @@ class LoginViewController: UIViewController {
         
         RailsRequest.session().registerWithUsername(name, username: username, password: password, email: email)
         
-//        if let vc = UIStoryboard(name: STORYBOARD_NAME, bundle: nil).instantiateInitialViewController() as? GameplayNavigationController {
-//            vc.user = username
-//            if let firstVC = vc.viewControllers.first as? WelcomeViewController {
-//                firstVC.user = username
-//            }
-//            
-//            presentViewController(vc, animated: true, completion: nil)
-//            
-//        }
 
     }
 
