@@ -95,7 +95,7 @@ class RailsRequest: NSObject {
      - parameter password: The password used when registering
      */
     
-    func loginWithUsername(username: String, andPassword password: String) {
+    func loginWithUsername(username: String, andPassword password: String, success:Bool -> ()) {
         var info = RequestInfo()
         info.endPoint = _USERS_LOGIN
         info.method = .POST
@@ -111,6 +111,7 @@ class RailsRequest: NSObject {
                 if let key = user[ACCESS_TOKEN] as? String {
                     print("key set")
                     self.token = key
+                    success(true)
 
                 }
                 
@@ -149,7 +150,7 @@ class RailsRequest: NSObject {
         
     }
     
-    func registerWithUsername(name: String, username:String, password:String, email:String) {
+    func registerWithUsername(name: String, username:String, password:String, email:String, success: (Bool) -> ()) {
         var info = RequestInfo()
         info.endPoint = _USERS_REGISTER
         info.method = .POST
@@ -163,11 +164,6 @@ class RailsRequest: NSObject {
         
         requestWithInfo(info) { (returnedInfo) -> () in
             if let user = returnedInfo?[USER] as? [String:AnyObject] {
-                if let key = user[ACCESS_TOKEN] as? String {
-                    self.token = key
-                    print(self.token)
-                    
-                }
                 
                 if let name = user[NAME] as? String {
                     self.currentName = name
@@ -185,8 +181,16 @@ class RailsRequest: NSObject {
                     self.currentEmail = email
                 }
                 
+                if let key = user[ACCESS_TOKEN] as? String {
+                    self.token = key
+                    print(self.token)
+                    success(true)
+                    
+                }
+                
                 if let error = returnedInfo?[ERRORS] as? [String] {
                     print(error)
+                    success(false)
                     
                 }
                 
@@ -195,6 +199,7 @@ class RailsRequest: NSObject {
         }
         
     }
+    
     /**
      Makes a generic request to the API, configured by the info parameter
      

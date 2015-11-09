@@ -23,10 +23,12 @@ private let answer2 = "50"
 private let answer3 = "everyone"
 
 private let GAME_OVER = "Game Over"
+private let CONGRATULATIONS = "Congratulations"
 private let TRANSFORM = "transform"
 
 private var currentQuestion = 1
 private var questionCount = 0
+
 
 class MainGameViewController: UIViewController, UIGestureRecognizerDelegate {
     
@@ -63,22 +65,35 @@ class MainGameViewController: UIViewController, UIGestureRecognizerDelegate {
                     UIView.animateWithDuration(0.25) { () -> Void in
                         self.scoreLabel.alpha = 0
                         self.questionLabel.alpha = 0
+                        self.submitButton.alpha = 0
+                        self.skipButton.alpha = 0
+                        self.answerTextField.alpha = 0
                         self.score += 10
                         
                         self.scoreLabel.text = SCORE + String(self.score)
                         
-                        if currentQuestion == 4 {
+                        if currentQuestion == 3 {
                             self.questionLabel.text = GAME_OVER
+                            self.answerTextField.text = CONGRATULATIONS
                             
-                        } else if currentQuestion < 4 {
+                        } else if currentQuestion < 3 {
                             self.questionLabel.text = self.questions[currentQuestion]
                             self.answerTextField.text = ""
+                            self.answerTextField.placeholder = self.answers[currentQuestion]
+                            currentQuestion++
                             
                         }
                         
-                        self.answerTextField.placeholder = self.answers[currentQuestion]
+
                         
                     }
+                    
+                    UIView.animateWithDuration(0.33, animations: { () -> Void in
+                        self.submitButton.alpha = 1
+                        self.skipButton.alpha = 1
+                        self.answerTextField.alpha = 1
+                        
+                    })
                     
                     UIView.animateWithDuration(0.66) { () -> Void in
                         self.scoreLabel.alpha = 1

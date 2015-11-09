@@ -46,23 +46,26 @@ class LoginViewController: UIViewController {
         guard let password = passwordTextField.text where password != EMPTY_STRING else {
             return alertError(LOGIN_FAILED, reason: PASSWORD_IS_EMPTY)}
         
-        RailsRequest.session().loginWithUsername(username, andPassword: password)
-        if let token = RailsRequest.session().token {
-            print("requested token: \(token)")
-            if token == EMPTY_STRING {
-                alertError(LOGIN_FAILED, reason: INVALID_USERNAME)
-            } else if let vc = UIStoryboard(name: STORYBOARD_NAME, bundle: nil).instantiateViewControllerWithIdentifier(NAVIGATION_CONTROLLER) as? GameplayNavigationController {
-                print("username \(username)")
-                if let firstVC = vc.viewControllers.first as? WelcomeViewController {
-                    firstVC.user = username
-                    RailsRequest.session().getDecks()
+        RailsRequest.session().loginWithUsername(username, andPassword: password) { (success) -> () in
+            if let token = RailsRequest.session().token {
+                print("requested token: \(token)")
+                if token == EMPTY_STRING {
+                    self.alertError(LOGIN_FAILED, reason: INVALID_USERNAME)
+                } else if let vc = UIStoryboard(name: STORYBOARD_NAME, bundle: nil).instantiateViewControllerWithIdentifier(NAVIGATION_CONTROLLER) as? GameplayNavigationController {
+                    print("username \(username)")
+                    if let firstVC = vc.viewControllers.first as? WelcomeViewController {
+                        firstVC.user = username
+                        RailsRequest.session().getDecks()
+                    }
+                    
+                    self.presentViewController(vc, animated: true, completion: nil)
+                    
                 }
-                self.presentViewController(vc, animated: true, completion: nil)
                 
             }
             
         }
-        
+    
     }
     
     @IBAction func registerButtonPressed(sender: AnyObject) {
@@ -75,8 +78,16 @@ class LoginViewController: UIViewController {
         guard let email = emailTextField.text where email != EMPTY_STRING else {
             return alertError(REGISTER_FAILED, reason: "Email is empty.")}
         
-        RailsRequest.session().registerWithUsername(name, username: username, password: password, email: email)
-        
+        RailsRequest.session().registerWithUsername(name, username: username, password: password, email: email) { (success) -> () in
+            if let vc = UIStoryboard(name: STORYBOARD_NAME, bundle: nil).instantiateViewControllerWithIdentifier(NAVIGATION_CONTROLLER) as? GameplayNavigationController {
+                if let firstVC = vc.viewControllers.first as? WelcomeViewController {
+                    firstVC.user = username
+                    RailsRequest.session().getDecks()
+                }
+                
+            }
+            
+        }
 
     }
 
