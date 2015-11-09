@@ -28,13 +28,13 @@ class WelcomeViewController: UIViewController {
         welcomeLabel.text = welcomeString
         print("decks: \(decks)")
         
-        RailsRequest.session().getDecksAndIDs({ (success) -> () in
-            if let titles = RailsRequest.session().titles {
-                self.decks = titles
-                
-            }
-            
-        })
+//        RailsRequest.session().getDecksAndIDs({ (success) -> () in
+//            if let titles = RailsRequest.session().deck {
+//                self.decks = titles
+//                
+//            }
+//            
+//        })
 
     }
 

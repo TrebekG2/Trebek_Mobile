@@ -54,8 +54,8 @@
 		2B969D971BEBA1F70026B7EA /* GameplayViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				2B1F12171BECF93C00B6041B /* GameplayNavigationController.swift */,
 				2B1F12151BECF2E600B6041B /* WelcomeViewController.swift */,
+				2B1F12171BECF93C00B6041B /* GameplayNavigationController.swift */,
 				2BBE0F171BEA970100C27E7F /* DeckTableViewController.swift */,
 				2B969DB81BEBEDCF0026B7EA /* CategoriesTableViewController.swift */,
 				2BBE0F151BEA961600C27E7F /* MainGameViewController.swift */,

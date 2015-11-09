@@ -40,6 +40,9 @@ private let ACCESS_TOKEN = "access_token" // need to get
 class RailsRequest: NSObject {
     
     let vc = UIViewController()
+    var deckSelected = Int()
+    
+    var cards = [String:AnyObject]()
     
     class func session() -> RailsRequest {return _railsRequest }
     
@@ -75,6 +78,7 @@ class RailsRequest: NSObject {
     }
     
     var titles: [[String:AnyObject]]?
+    var ids: [[String:AnyObject]]?
     
     /// The base url used when making an API call
     private let base = _API_URL
@@ -128,16 +132,32 @@ class RailsRequest: NSObject {
 
             if let titles = returnedInfo as? [[String:AnyObject]] {
                 self.titles = titles
-                print("title: \(titles)")
                 success(true)
                 
             } else {
                 success(false)
             }
-
+            
         }
         
+    }
+    
+    func getCards(succes: Bool -> () ) {
+        var info = RequestInfo()
+        print("deckSelected \(deckSelected)")
+        info.endPoint = "/users/" + String(deckSelected) + "/cards"
+        info.method = .GET
+        info.query = [:]
         
+        requestWithInfo(info) { (returnedInfo) -> () in
+            if let cards = returnedInfo as? [String:AnyObject] {
+                self.cards = cards
+                succes(true)
+            } else {
+                succes(false)
+            }
+
+        }
     }
     
     func registerWithUsername(name: String, username:String, password:String, email:String, success: (Bool) -> ()) {

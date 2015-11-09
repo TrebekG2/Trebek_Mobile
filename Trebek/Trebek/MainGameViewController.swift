@@ -29,10 +29,12 @@ private let TRANSFORM = "transform"
 private var currentQuestion = 1
 private var questionCount = 0
 
-
 class MainGameViewController: UIViewController, UIGestureRecognizerDelegate {
     
     let anim = CAKeyframeAnimation(keyPath: TRANSFORM)
+    
+    var deckSelected = String()
+    var id = Int()
 
     var score = 0
     var originalPoint = CGPoint()
@@ -83,9 +85,7 @@ class MainGameViewController: UIViewController, UIGestureRecognizerDelegate {
                             currentQuestion++
                             
                         }
-                        
-
-                        
+                    
                     }
                     
                     UIView.animateWithDuration(0.33, animations: { () -> Void in
@@ -178,6 +178,10 @@ class MainGameViewController: UIViewController, UIGestureRecognizerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        RailsRequest.session().getCards { (success) -> () in
+            
+        }
         
         questionLabel.layer.masksToBounds = true 
         questionLabel.layer.cornerRadius = 20

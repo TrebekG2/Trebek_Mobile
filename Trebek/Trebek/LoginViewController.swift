@@ -91,8 +91,7 @@ class LoginViewController: UIViewController {
                     firstVC.user = username
                     RailsRequest.session().getDecksAndIDs({ (success) -> () in
                         if let titles = RailsRequest.session().titles {
-                            firstVC.decks = titles
-                            
+//                            firstVC.decks = titles["title"]
                         }
                         
                     })

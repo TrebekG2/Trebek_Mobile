@@ -12,6 +12,9 @@ private let NUMBER_OF_SECTIONS = 1
 private let IDENTIFIER = "DeckCell"
 private let DECK_LISTS = ["Cray", "ToughDeck", "Lobster", "Math"]
 
+private let TITLE = "title"
+private let ID = "id"
+
 class DeckTableViewController: UITableViewController {
     
     var decks = []
@@ -46,14 +49,13 @@ class DeckTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(IDENTIFIER, forIndexPath: indexPath)
-        if let deckTitle = decks[indexPath.row]["title"] as? String {
+        if let deckTitle = decks[indexPath.row][TITLE] as? String {
             cell.textLabel!.text = deckTitle
             
         }
 
         return cell
     }
-
 
     /*
     // Override to support conditional editing of the table view.
@@ -90,14 +92,32 @@ class DeckTableViewController: UITableViewController {
     }
     */
 
-    /*
-    // MARK: - Navigation
+
+
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let gameplayVC = segue.destinationViewController as? MainGameViewController {
+            if let cell = sender as? UITableViewCell {
+                if let indexPath = tableView.indexPathForCell(cell) {
+                    let cellTitle = cell.textLabel?.text
+                        gameplayVC.deckSelected = cellTitle!
+                    if let id = decks[indexPath.row][ID] as? Int {
+                        gameplayVC.id = id
+                        print("!@*#(!")
+                        RailsRequest.session().deckSelected = id
+                    }
+                    
+
+                }
+                
+            }
+            
+        }
+        
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+
 
 }
